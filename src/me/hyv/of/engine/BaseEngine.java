@@ -40,8 +40,8 @@ public class BaseEngine {
 	        GL.createCapabilities();
 	        
 	        game.init(this);
-	        makeResizeCallback();
 	        glfwShowWindow(windowHandle);
+	        makeResizeCallback();
 	        loop();
 		} finally {
 			game.destroy();
