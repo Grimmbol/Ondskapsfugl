@@ -85,6 +85,11 @@ public class BaseEngine {
 
 	private void makeResizeCallback() {
 		GLFWFramebufferSizeCallback.create((window, width, height)->game.resize(width, height)).set(windowHandle);
+	
+		int[] w = new int[1], h = new int[1];
+		glfwGetFramebufferSize(windowHandle, w, h);
+		
+		game.resize(w[0], h[0]);
 	}
 	
 	private void loop() {
