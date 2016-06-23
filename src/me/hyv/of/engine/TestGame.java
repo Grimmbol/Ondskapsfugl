@@ -29,9 +29,4 @@ public class TestGame extends AbstractGame {
 	public void destroy() {
 		
 	}
-
-	public static void main(String[] args) {
-		BaseEngine engine = new BaseEngine(new TestGame(), "TestGame", 1600, 900, true, false);
-		engine.run();
-	}
 }

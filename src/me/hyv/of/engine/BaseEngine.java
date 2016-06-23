@@ -46,7 +46,7 @@ public class BaseEngine {
 		} finally {
 			game.destroy();
 			glfwSetKeyCallback(windowHandle, null).free();
-			glfwSetFramebufferSizeCallback(windowHandle, null).free();
+			//glfwSetFramebufferSizeCallback(windowHandle, null).free();
 			glfwTerminate();
 			glfwSetErrorCallback(null).free();
 		}
