@@ -11,8 +11,8 @@ public class PlayerComponent extends CollitionComponent {
 	
 	private float walkAccel = DEFAULT_ACCEL;
 	
-	public PlayerComponent(ConvexPolygon shape) {
-		super(shape);
+	public PlayerComponent(ConvexPolygon shape, PhysicsPool pool) {
+		super(shape, pool);
 	}
 
 	@Override

@@ -30,7 +30,11 @@ public class Entity {
 	
 	public void removeComponent(Component cmp) {
 		components.remove(cmp);
-		cmp.onRemove();
+		cmp.kill();
+	}
+	
+	public void removeComponentWithoutKilling(Component cmp) {
+		components.remove(cmp);
 	}
 	
 	public void setScene(Scene scene) {
@@ -42,7 +46,6 @@ public class Entity {
 			Component c = components.get(i);
 			if(!c.isAlive()) {
 				components.remove(i);
-				c.onRemove();
 				i--;
 			}
 			else
@@ -55,11 +58,16 @@ public class Entity {
 			Component c = components.get(i);
 			if(!c.isAlive()) {
 				components.remove(i);
-				c.onRemove();
 				i--;
 			}
 			else
 				c.render();
+		}
+	}
+	
+	public void kill() {
+		for(int i = 0; i < components.size(); i++) {
+			components.get(i).kill();
 		}
 	}
 	
@@ -71,5 +79,9 @@ public class Entity {
 	}
 	public void compress() {
 		components.trimToSize();
+	}
+
+	public float getDistance(Entity e) {
+		return (float) Math.hypot(x-e.x, y-e.y);
 	}
 }

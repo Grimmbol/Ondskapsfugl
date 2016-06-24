@@ -12,8 +12,18 @@ public class CollitionComponent extends Component {
 	protected float xSpeed, ySpeed;
 	protected boolean collider = true;
 	
-	public CollitionComponent(ConvexPolygon shape) {
+	private PhysicsPool pool;
+	
+	public CollitionComponent(ConvexPolygon shape, PhysicsPool pool) {
 		this.shape = shape;
+		this.pool = pool;
+		pool.registerObject(this);
+	}
+	
+	@Override
+	public void kill() {
+		super.kill();
+		pool.removeComponent(this);
 	}
 	
 	public Entity getParent() {
