@@ -69,4 +69,7 @@ public class Entity {
 	public Scene getScene() {
 		return scene;
 	}
+	public void compress() {
+		components.trimToSize();
+	}
 }

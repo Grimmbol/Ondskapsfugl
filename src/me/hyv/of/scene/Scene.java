@@ -10,7 +10,11 @@ public class Scene {
 	}
 	
 	public void addEntity(Entity e) {
-		entities.add(e);
+		if(!entities.contains(e))
+			entities.add(e);
+		else
+			System.err.println("Added an entity a second time!");
+		e.compress();
 	}
 	
 	public void update() {

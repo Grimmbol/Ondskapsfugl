@@ -2,6 +2,7 @@ package me.hyv.of.game;
 
 import me.hyv.of.engine.AbstractGame;
 import me.hyv.of.engine.BaseEngine;
+import me.hyv.of.engine.RenderEngine;
 import me.hyv.of.engine.Time;
 import me.hyv.of.game.comp.ShapeRenderComponent;
 import me.hyv.of.scene.Entity;
@@ -17,24 +18,43 @@ public class LogFGame extends AbstractGame {
 	@Override
 	public void init(BaseEngine engine) {
 		glDisable(GL_DEPTH_TEST);
+		glEnable(GL_CULL_FACE);
 		glClearColor(0.2f, 0.3f, 0.6f, 0);
 		
 		gameScene = new Scene();
-		Entity shape = new Entity(300, 200, 400, 300);
-		shape.addComponent(new ShapeRenderComponent(ConvexPolygon.UNIT_SQUARE, 0.3f, 0.7f, 0.5f));
-		gameScene.addEntity(shape);
-		Entity circle = new Entity(955, 540, 1900, 1000);
-		circle.addComponent(new ShapeRenderComponent(ConvexPolygon.CIRCLE_ISH_SHAPE, 0.7f, 0.4f, 0.5f));
-		gameScene.addEntity(circle);
+		Entity floor = new Entity(1000, 30, 1800, 50);
+		floor.addComponent(new ShapeRenderComponent(ConvexPolygon.UNIT_SQUARE, 0.6f, 0.7f, 0.5f));
+		gameScene.addEntity(floor);
+		
+		Entity player = new Entity(200, 200, 100, 200);
+		player.addComponent(new ShapeRenderComponent(ConvexPolygon.UNIT_SQUARE, 0.8f, 0.2f, 0.4f));
+		gameScene.addEntity(player);
+		
+		Entity triangle = new Entity(500, 55+50, 100, 100);
+		triangle.addComponent(new ShapeRenderComponent(ConvexPolygon.RIGHT_ANGLE_BL, 0.3f, 0.6f, 0.8f));
+		gameScene.addEntity(triangle);
+		
+		Entity hexagon = new Entity(547, 400, 80, 100);
+		hexagon.addComponent(new ShapeRenderComponent(ConvexPolygon.HEXAGON, 0.8f, 0.6f, 0.4f));
+		gameScene.addEntity(hexagon);
+		
+		Entity bigSquare = new Entity(800, 600, 200, 200);
+		bigSquare.addComponent(new ShapeRenderComponent(ConvexPolygon.UNIT_SQUARE, 0.4f, 0.8f, 0.2f));
+		gameScene.addEntity(bigSquare);
+		
+		Entity rombe = new Entity(900, 300, 200, 120);
+		rombe.addComponent(new ShapeRenderComponent(ConvexPolygon.ROMBE, 0.6f, 0.8f, 0.2f));
+		gameScene.addEntity(rombe);
+		
+		Entity pentagon = new Entity(1500, 200, 200, 200);
+		pentagon.addComponent(new ShapeRenderComponent(ConvexPolygon.PENTAGON, 0.9f, 0.8f, 0.2f));
+		gameScene.addEntity(pentagon);
 	}
 
 	@Override
 	public void resize(int width, int height) {
 		glViewport(0, 0, width, height);
-		glMatrixMode(GL_PROJECTION_MATRIX);
-		glLoadIdentity();
-		glOrtho(0, 1920, 0, 1080, 0, 1);
-		glMatrixMode(GL_MODELVIEW_MATRIX);
+		RenderEngine.setCanvasSize(width, height);
 	}
 
 	@Override
