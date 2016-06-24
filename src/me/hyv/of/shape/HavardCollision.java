@@ -62,7 +62,6 @@ public class HavardCollision {
 		}
 		if(cX == dX) {
 			float p = (aY-bY)/(aX-bX)*(cX-aX)+aY;
-			System.out.println(p);
 			return ((aX<cX) != (bX<cX)) && (p>cY == p<dY);
 		}
 				
@@ -74,14 +73,14 @@ public class HavardCollision {
 		if(a == c) //Two parallel lines
 			return false;
 		
-		float x = (d-b)/(a-c);
+		float x = (d-b)/(a-c) + aX;
 		
 		//System.out.printf("%fx + %f = %fx + %f    ...     %f <= %f == %f <= %f%n", a, b, c, d, aX, x, x, bX);
 		
-		return aX <= x == x <= bX;
+		return aX <= x == x <= bX && cX <= x == x <= dX;
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(lineIntersect(4, -1, 1, 8, 3, 6, 3, 2));
+		System.out.println(lineIntersect(5, 9, 13, -3, 7, -1, 16, 5));
 	}
 }
