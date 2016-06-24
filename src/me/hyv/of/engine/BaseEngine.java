@@ -57,6 +57,7 @@ public class BaseEngine {
 			  throw new IllegalStateException("Unable to initialize GLFW");
 		
 		glfwDefaultWindowHints();
+		glfwWindowHint(GLFW_SAMPLES, 8);
 		glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 		glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 		windowHandle = glfwCreateWindow(w_width, w_height, title, NULL, NULL);

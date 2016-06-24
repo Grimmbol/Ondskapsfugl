@@ -7,7 +7,7 @@ import me.hyv.of.shape.ConvexPolygon;
 public class PlayerComponent extends CollitionComponent {
 	
 	public static final float DEFAULT_ACCEL = 5000;
-	public static final float DEFAULT_FRICTION = 15;
+	public static final float DEFAULT_FRICTION = 10;
 	
 	private float walkAccel = DEFAULT_ACCEL;
 	
