@@ -1,6 +1,7 @@
 package me.hyv.of.game.comp;
 
 import me.hyv.of.scene.Component;
+import me.hyv.of.scene.Entity;
 import me.hyv.of.shape.ConvexPolygon;
 
 public class CollitionComponent extends Component {
@@ -9,6 +10,10 @@ public class CollitionComponent extends Component {
 	
 	public CollitionComponent(ConvexPolygon shape) {
 		this.shape = shape;
+	}
+	
+	public Entity getParent() {
+		return parent;
 	}
 	
 	@Override
