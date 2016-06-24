@@ -2,6 +2,7 @@ package me.hyv.of.game;
 
 import me.hyv.of.engine.AbstractGame;
 import me.hyv.of.engine.BaseEngine;
+import me.hyv.of.engine.Time;
 import me.hyv.of.game.comp.ShapeRenderComponent;
 import me.hyv.of.scene.Entity;
 import me.hyv.of.scene.Scene;
@@ -22,6 +23,9 @@ public class LogFGame extends AbstractGame {
 		Entity shape = new Entity(300, 200, 400, 300);
 		shape.addComponent(new ShapeRenderComponent(ConvexPolygon.UNIT_SQUARE, 0.3f, 0.7f, 0.5f));
 		gameScene.addEntity(shape);
+		Entity circle = new Entity(955, 540, 1900, 1000);
+		circle.addComponent(new ShapeRenderComponent(ConvexPolygon.CIRCLE_ISH_SHAPE, 0.7f, 0.4f, 0.5f));
+		gameScene.addEntity(circle);
 	}
 
 	@Override
@@ -34,10 +38,23 @@ public class LogFGame extends AbstractGame {
 	}
 
 	@Override
-	public void onFrame(int deltaMillis) {
+	public void onFrame() {
+		countFPS();
 		gameScene.update();
 		glClear(GL_COLOR_BUFFER_BIT);
 		gameScene.render();
+	}
+	
+	int frames;
+	int millis;
+	private void countFPS() {
+		frames++;
+		millis += Time.getDeltaMillis();
+		if(millis > 1000) {
+			System.out.printf("FPS: %f%n", frames * 1000f / millis);
+			millis -= 1000;
+			frames = 0;
+		}
 	}
 
 	@Override

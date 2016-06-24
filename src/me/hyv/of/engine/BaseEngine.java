@@ -93,9 +93,10 @@ public class BaseEngine {
 	}
 	
 	private void loop() {
-		long prevTime = System.currentTimeMillis()-16; //16 milliseconds is a 
+		long prevTime = System.currentTimeMillis()-16; //16 milliseconds is a good number for the first delta time
 		while(!glfwWindowShouldClose(windowHandle)) {
-			game.onFrame((int)-(prevTime-(prevTime=System.currentTimeMillis())));
+			Time.setDelta((int)-(prevTime-(prevTime=System.currentTimeMillis())));
+			game.onFrame();
 			glfwSwapBuffers(windowHandle);
 			glfwPollEvents();
 		}

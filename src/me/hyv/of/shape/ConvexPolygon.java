@@ -5,6 +5,7 @@ import static org.lwjgl.opengl.GL11.*;
 public class ConvexPolygon {
 	public static final ConvexPolygon UNIT_SQUARE = 
 			new ConvexPolygon(new float[]{-.5f, .5f, .5f, -.5f}, new float[]{-.5f, -.5f, .5f, .5f});
+	public static final ConvexPolygon CIRCLE_ISH_SHAPE = createNPoly(100);
 	
 	public float[] x, y;
 	
@@ -25,5 +26,18 @@ public class ConvexPolygon {
 			glVertex2f(x[i+1], 	y[i+1]);
 		}
 		glEnd();
+	}
+	
+	public static ConvexPolygon createNPoly(int n) {
+		float[] x = new float[n], y = new float[n];
+		
+		double step = Math.PI*2/n;
+		
+		for(int i = 0; i < n; i++) {
+			x[i] = (float)Math.sin(step*i)/2;
+			y[i] = (float)Math.cos(step*i)/2;
+		}
+		
+		return new ConvexPolygon(x, y);
 	}
 }
