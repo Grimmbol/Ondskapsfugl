@@ -2,8 +2,10 @@ package me.hyv.of.game;
 
 import me.hyv.of.engine.AbstractGame;
 import me.hyv.of.engine.BaseEngine;
+import me.hyv.of.game.comp.ShapeRenderComponent;
 import me.hyv.of.scene.Entity;
 import me.hyv.of.scene.Scene;
+import me.hyv.of.shape.ConvexPolygon;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -17,9 +19,9 @@ public class LogFGame extends AbstractGame {
 		glClearColor(0.2f, 0.3f, 0.6f, 0);
 		
 		gameScene = new Scene();
-		Entity box = new Entity(100, 200, 400, 300);
-		box.addComponent(new BoxComponent(0.7f, 0.5f, 0.2f));
-		gameScene.addEntity(box);
+		Entity shape = new Entity(300, 200, 400, 300);
+		shape.addComponent(new ShapeRenderComponent(ConvexPolygon.UNIT_SQUARE, 0.3f, 0.7f, 0.5f));
+		gameScene.addEntity(shape);
 	}
 
 	@Override

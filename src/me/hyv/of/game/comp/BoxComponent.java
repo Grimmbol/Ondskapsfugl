@@ -1,4 +1,4 @@
-package me.hyv.of.game;
+package me.hyv.of.game.comp;
 
 import me.hyv.of.scene.Component;
 
