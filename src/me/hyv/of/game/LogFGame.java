@@ -68,13 +68,13 @@ public class LogFGame extends AbstractGame {
 	}
 	
 	int frames;
-	int millis;
+	float time;
 	private void countFPS() {
 		frames++;
-		millis += Time.getDeltaMillis();
-		if(millis > 1000) {
-			System.out.printf("FPS: %f%n", frames * 1000f / millis);
-			millis -= 1000;
+		time += Time.getDelta();
+		if(time > 1) {
+			System.out.printf("FPS: %f%n", frames/time);
+			time -= 1;
 			frames = 0;
 		}
 	}
@@ -90,7 +90,7 @@ public class LogFGame extends AbstractGame {
 	}
 	
 	public static void main(String[] args) {
-		BaseEngine engine = new BaseEngine(new LogFGame(), "Larvetass og Fluegreie", 1600, 900, true, false);
+		BaseEngine engine = new BaseEngine(new LogFGame(), "Larvetass og Fluegreie", 1600, 900, false, false);
 		engine.run();
 	}
 }

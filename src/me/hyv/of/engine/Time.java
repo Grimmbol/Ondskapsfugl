@@ -1,18 +1,12 @@
 package me.hyv.of.engine;
 
 public class Time {
-	private static int deltaMillis;
 	private static float deltaSeconds;
 	
-	public static void setDelta(long millis) {
-		if(millis > 40)
+	public static void setDelta(double seconds) {
+		if(seconds > 0.04)
 			return;
-		deltaMillis = (int)millis;
-		deltaSeconds = deltaMillis / 1000f;
-	}
-	
-	public static int getDeltaMillis() {
-		return deltaMillis;
+		deltaSeconds = (float) seconds;
 	}
 	
 	public static float getDelta() {
