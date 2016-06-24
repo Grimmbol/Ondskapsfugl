@@ -4,6 +4,7 @@ import me.hyv.of.engine.AbstractGame;
 import me.hyv.of.engine.BaseEngine;
 import me.hyv.of.engine.RenderEngine;
 import me.hyv.of.engine.Time;
+import me.hyv.of.game.comp.PlayerComponent;
 import me.hyv.of.game.comp.ShapeRenderComponent;
 import me.hyv.of.scene.Entity;
 import me.hyv.of.scene.Scene;
@@ -28,6 +29,7 @@ public class LogFGame extends AbstractGame {
 		
 		Entity player = new Entity(200, 200, 100, 200);
 		player.addComponent(new ShapeRenderComponent(ConvexPolygon.UNIT_SQUARE, 0.8f, 0.2f, 0.4f));
+		player.addComponent(new PlayerComponent(ConvexPolygon.UNIT_SQUARE));
 		gameScene.addEntity(player);
 		
 		Entity triangle = new Entity(500, 55+50, 100, 100);
@@ -79,7 +81,7 @@ public class LogFGame extends AbstractGame {
 
 	@Override
 	public void onKeyStateChange(int key, int action) {
-		
+		Input.onKeyStateChanged(key, action);
 	}
 
 	@Override
