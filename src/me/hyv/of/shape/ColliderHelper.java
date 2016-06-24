@@ -1,6 +1,7 @@
 package me.hyv.of.shape;
 
 import me.hyv.of.game.comp.CollitionComponent;
+import me.hyv.of.game.comp.PhysicsPool;
 import me.hyv.of.scene.Entity;
 
 public class ColliderHelper {
@@ -87,7 +88,7 @@ public class ColliderHelper {
 		
 		float[] dir   = {1,1};
 		float[] point = {0,0};
-		CollitionComponent component = new CollitionComponent(ConvexPolygon.CIRCLE_SHAPE_100);
+		CollitionComponent component = new CollitionComponent(ConvexPolygon.CIRCLE_SHAPE_100, new PhysicsPool());
 		Entity entity = new Entity();
 		entity.addComponent(component);
 		
