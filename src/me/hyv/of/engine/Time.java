@@ -5,6 +5,8 @@ public class Time {
 	private static float deltaSeconds;
 	
 	public static void setDelta(long millis) {
+		if(millis > 20)
+			return;
 		deltaMillis = (int)millis;
 		deltaSeconds = deltaMillis / 1000f;
 	}
