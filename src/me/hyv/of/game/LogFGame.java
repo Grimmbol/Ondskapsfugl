@@ -90,7 +90,7 @@ public class LogFGame extends AbstractGame {
 	}
 	
 	public static void main(String[] args) {
-		BaseEngine engine = new BaseEngine(new LogFGame(), "Larvetass og Fluegreie", 1600, 900, false, false);
+		BaseEngine engine = new BaseEngine(new LogFGame(), "Larvetass og Fluegreie", 1600, 900, true, false);
 		engine.run();
 	}
 }

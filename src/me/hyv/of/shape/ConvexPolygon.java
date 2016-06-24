@@ -41,6 +41,10 @@ public class ConvexPolygon {
 		glEnd();
 	}
 	
+	/**
+	 * The nodes get listed counterclockwise around the shape
+	 */
+	
 	public static ConvexPolygon createNPoly(int n) {
 		float[] x = new float[n], y = new float[n];
 		
