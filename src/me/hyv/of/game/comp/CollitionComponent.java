@@ -31,13 +31,9 @@ public class CollitionComponent extends Component {
 	}
 
 	protected void friction(float friction) {
-		float speed = (float)Math.hypot(xSpeed, ySpeed);
-		if(speed > 0) {
-			speed = 1-(speed * friction * Time.getDelta())/speed;
-			
-			xSpeed *= speed;
-			ySpeed *= speed;
-		}
+		float frFactor = 1f/(1+Time.getDelta()*friction);
+		xSpeed *= frFactor;
+		ySpeed *= frFactor;
 	}
 	
 	@Override
