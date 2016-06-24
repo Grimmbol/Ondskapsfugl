@@ -14,7 +14,7 @@ public class ConvexPolygon {
 			new ConvexPolygon(new float[]{-.5f, .5f, -.5f}, new float[]{-.5f, -.5f, .5f});
 	
 	public float[] x, y;
-	public float maxRadius;
+	public float maxX, maxY;
 	
 	public ConvexPolygon(float[] x, float[] y) {
 		this.x = x;
@@ -25,10 +25,9 @@ public class ConvexPolygon {
 			throw new RuntimeException("A shape must have at least 3 nodes");
 		
 		for(int i = 0; i < x.length; i++) {
-			maxRadius = Math.max(maxRadius, x[i]*x[i]+y[i]*y[i]);
+			maxX = Math.max(maxX, Math.abs(x[i]));
+			maxY = Math.max(maxY, Math.abs(y[i]));
 		}
-		
-		maxRadius = (float) Math.sqrt(maxRadius);
 	}
 	
 	public void renderGL11() {

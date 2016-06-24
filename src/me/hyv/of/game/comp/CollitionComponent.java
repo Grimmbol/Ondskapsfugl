@@ -58,4 +58,8 @@ public class CollitionComponent extends Component {
 	public boolean isSolid() {
 		return collider;
 	}
+	
+	public float getMaxRadius() {
+		return Math.max(shape.maxX * parent.xSize, shape.maxY * parent.ySize);
+	}
 }

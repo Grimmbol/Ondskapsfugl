@@ -33,11 +33,6 @@ public class LogFGame extends AbstractGame {
 		floor.addComponent(new CollitionComponent(ConvexPolygon.UNIT_SQUARE, pool));
 		gameScene.addEntity(floor);
 		
-		Entity player = new Entity(200, 200, 100, 200);
-		player.addComponent(new ShapeRenderComponent(ConvexPolygon.UNIT_SQUARE, 0.8f, 0.2f, 0.4f));
-		player.addComponent(new PlayerComponent(ConvexPolygon.UNIT_SQUARE, pool));
-		gameScene.addEntity(player);
-		
 		Entity triangle = new Entity(500, 55+50, 100, 100);
 		triangle.addComponent(new ShapeRenderComponent(ConvexPolygon.RIGHT_ANGLE_BL, 0.3f, 0.6f, 0.8f));
 		triangle.addComponent(new CollitionComponent(ConvexPolygon.RIGHT_ANGLE_BL, pool));
@@ -62,6 +57,11 @@ public class LogFGame extends AbstractGame {
 		pentagon.addComponent(new ShapeRenderComponent(ConvexPolygon.PENTAGON, 0.9f, 0.8f, 0.2f));
 		pentagon.addComponent(new CollitionComponent(ConvexPolygon.PENTAGON, pool));
 		gameScene.addEntity(pentagon);
+		
+		Entity player = new Entity(200, 200, 100, 200);
+		player.addComponent(new ShapeRenderComponent(ConvexPolygon.UNIT_SQUARE, 0.8f, 0.2f, 0.4f));
+		player.addComponent(new PlayerComponent(ConvexPolygon.UNIT_SQUARE, pool));
+		gameScene.addEntity(player);
 		
 		Entity physicsPoolEntity = new Entity();
 		physicsPoolEntity.addComponent(pool);

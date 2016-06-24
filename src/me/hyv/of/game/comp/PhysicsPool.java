@@ -28,12 +28,10 @@ public class PhysicsPool extends Component {
 
 	@Override
 	public void update() {
-		System.out.println(components.size());
 		for(int i = 0; i < components.size(); i++) {
 			for(int j = i+1; j < components.size(); j++) {
 				if(HavardCollision.intersecting(components.get(i), components.get(j))) {
 					components.get(i).getParent().kill();
-					System.out.println("Test");
 				}
 			}
 		}
