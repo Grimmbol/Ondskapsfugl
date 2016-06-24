@@ -29,9 +29,14 @@ public class PhysicsPool extends Component {
 	@Override
 	public void update() {
 		for(int i = 0; i < components.size(); i++) {
+			CollitionComponent c1 = components.get(i);
+			if(!c1.isSolid())
+				continue;
 			for(int j = i+1; j < components.size(); j++) {
-				if(HavardCollision.intersecting(components.get(i), components.get(j))) {
-					components.get(i).getParent().kill();
+				CollitionComponent c2 = components.get(j);
+				if(HavardCollision.intersecting(c1, c2)) {
+					//c1.getParent().kill();
+					//c1.getParent().setVisible(!c1.getParent().isVisible());
 				}
 			}
 		}

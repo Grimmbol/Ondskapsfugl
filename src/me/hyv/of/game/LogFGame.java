@@ -30,7 +30,7 @@ public class LogFGame extends AbstractGame {
 		
 		Entity floor = new Entity(1000, 30, 1800, 50);
 		floor.addComponent(new ShapeRenderComponent(ConvexPolygon.UNIT_SQUARE, 0.6f, 0.7f, 0.5f));
-		floor.addComponent(new CollitionComponent(ConvexPolygon.UNIT_SQUARE, pool));
+		//floor.addComponent(new CollitionComponent(ConvexPolygon.UNIT_SQUARE, pool));
 		gameScene.addEntity(floor);
 		
 		Entity triangle = new Entity(500, 55+50, 100, 100);
@@ -77,8 +77,8 @@ public class LogFGame extends AbstractGame {
 	@Override
 	public void onFrame() {
 		countFPS();
-		gameScene.update();
 		glClear(GL_COLOR_BUFFER_BIT);
+		gameScene.update();
 		gameScene.render();
 	}
 	

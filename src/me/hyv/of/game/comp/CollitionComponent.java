@@ -17,7 +17,13 @@ public class CollitionComponent extends Component {
 	public CollitionComponent(ConvexPolygon shape, PhysicsPool pool) {
 		this.shape = shape;
 		this.pool = pool;
-		pool.registerObject(this);
+	}
+	
+	@Override
+	public void setParent(Entity parent) {
+		if(this.parent == null)
+			pool.registerObject(this);
+		super.setParent(parent);
 	}
 	
 	@Override

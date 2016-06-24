@@ -27,7 +27,7 @@ public class ShapeRenderComponent extends Component {
 		glPushMatrix();
 		glColor3f(r, g, b);
 		glTranslatef(parent.x, parent.y, 0);
-		glScalef(parent.xSize, parent.ySize, 0);
+		glScalef(parent.xSize*0.98f, parent.ySize*0.98f, 0);
 		shape.renderGL11();
 		glPopMatrix();
 	}
