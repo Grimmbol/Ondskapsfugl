@@ -10,10 +10,6 @@ public abstract class Component {
 		this.parent = parent;
 	}
 	
-	public void onRemove() {
-		this.parent = null;
-	}
-	
 	public abstract void update();
 	
 	public abstract void render();
