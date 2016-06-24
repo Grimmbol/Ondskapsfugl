@@ -51,8 +51,6 @@ public class HavardCollision {
 	}
 	
 	private static boolean lineIntersect(float aX, float aY, float bX, float bY, float cX, float cY, float dX, float dY) {
-		//System.out.printf("a: (%f, %f), b: (%f, %f), c: (%f, %f), d: (%f, %f)%n", aX, aY, bX, bY, cX, cY, dX, dY);
-		
 		if(aX == bX) {
 			if(cX == dX)
 				return false;
@@ -75,12 +73,6 @@ public class HavardCollision {
 		
 		float x = (d-b)/(a-c) + aX;
 		
-		//System.out.printf("%fx + %f = %fx + %f    ...     %f <= %f == %f <= %f%n", a, b, c, d, aX, x, x, bX);
-		
 		return aX <= x == x <= bX && cX <= x == x <= dX;
-	}
-	
-	public static void main(String[] args) {
-		System.out.println(lineIntersect(5, 9, 13, -3, 7, -1, 16, 5));
 	}
 }
