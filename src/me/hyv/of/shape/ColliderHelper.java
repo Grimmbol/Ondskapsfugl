@@ -11,11 +11,22 @@ public class ColliderHelper {
 		
 		//Creates a function representing the direction vector
 		float DRate = dir[1]/dir[2];
-		float Dy0 = point[1] - DRate * point[0];
+		float Dy0   = point[1] - DRate * point[0];
 		
 		for(int i = 0; i < cc.getShape().x.length; i++) {
+			float[] curVec = new float[2];
+			if(i != cc.getShape().x.length) {
+				curVec[0] = cc.getShape().x[i+1] - cc.getShape().x[i];
+				curVec[1] = cc.getShape().y[i+1] - cc.getShape().y[i];
+			}
+			else {
+				curVec[0] = cc.getShape().x[0] - cc.getShape().x[i];
+				curVec[1] = cc.getShape().y[0] - cc.getShape().y[i];
+			}
+			
 			//Creates a function representing vector that intersection is checked up against
-//			float Vrate = 
+			float VRate = curVec[1]/ curVec[0];
+			float Vy0   = cc.getShape().y[i] - VRate * cc.getShape().y[i];
 		}
 		
 		
