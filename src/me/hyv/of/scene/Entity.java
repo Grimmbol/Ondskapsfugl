@@ -13,6 +13,8 @@ public class Entity {
 	public Entity() {
 		components = new ArrayList<>();
 		alive = true;
+		x = 1;
+		y = 1;
 	}
 	
 	public Entity(float x, float y, float xSize, float ySize) {
