@@ -6,7 +6,7 @@ public abstract class Component {
 	
 	public void setParent(Entity parent) {
 		if(this.parent != null)
-			this.parent.removeComponent(this);
+			this.parent.removeComponentWithoutKilling(this);
 		this.parent = parent;
 	}
 	

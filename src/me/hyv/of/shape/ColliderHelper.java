@@ -191,24 +191,27 @@ public class ColliderHelper {
 		return result;
 	}
 	
-	public static void main(String[] args) {
-		
-		long time = System.currentTimeMillis();
-		
-		float[] dir   = {1,1};
-		float[] point = {0,0};
-		CollitionComponent component1 = new CollitionComponent(ConvexPolygon.PENTAGON, new PhysicsPool());
-		CollitionComponent component2 = new CollitionComponent(ConvexPolygon.PENTAGON, new PhysicsPool());
-		Entity entity1 = new Entity();
-		Entity entity2 = new Entity();
-		entity1.addComponent(component1);
-		entity2.addComponent(component2);
-		
-//		for(int i = 0; i < component.getShape().x.length; i++) {
-//			System.out.printf("%f %f \n",component.getShape().x[i], component.getShape().y[i]);
-//		}
-		
-		System.out.println(isIntersecting(component1, component2));
-		
-	}
+//	public static void main(String[] args) {
+//		long time = System.currentTimeMillis();
+//		
+//		float[] dir   = {1,1};
+//		float[] point = {0,0};
+//
+//		CollitionComponent component1 = new CollitionComponent(ConvexPolygon.PENTAGON, new PhysicsPool());
+//		CollitionComponent component2 = new CollitionComponent(ConvexPolygon.PENTAGON, new PhysicsPool());
+//		Entity entity1 = new Entity();
+//		Entity entity2 = new Entity();
+//		entity1.addComponent(component1);
+//		entity2.addComponent(component2);
+//		CollitionComponent component = new CollitionComponent(ConvexPolygon.CIRCLE_SHAPE_100, new PhysicsPool());
+//		Entity entity = new Entity();
+//		entity.addComponent(component);
+//		
+////		for(int i = 0; i < component.getShape().x.length; i++) {
+////			System.out.printf("%f %f \n",component.getShape().x[i], component.getShape().y[i]);
+////		}
+//		
+//		System.out.println(isIntersecting(component1, component2));
+//		
+//	}
 }
