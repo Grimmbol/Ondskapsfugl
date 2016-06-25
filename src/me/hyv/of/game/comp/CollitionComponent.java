@@ -66,7 +66,7 @@ public class CollitionComponent extends Component {
 	}
 	
 	public float getMaxRadius() {
-		return Math.max(shape.maxX * parent.xSize, shape.maxY * parent.ySize);
+		return (float)Math.hypot(shape.maxX * parent.xSize, shape.maxY * parent.ySize);
 	}
 	
 	public boolean hasSpeed(float max) {

@@ -40,16 +40,22 @@ public class PhysicsPool extends Component {
 					float intersect = -1;
 					do {
 						c1.xSpeed*=0.5f;
-						c1.ySpeed*=0.5f;
 						c2.xSpeed*=0.5f;
-						c2.ySpeed*=0.5f;
 						c1.getParent().x+=c1.xSpeed*Time.getDelta() * intersect; 
-						c1.getParent().y+=c1.ySpeed*Time.getDelta() * intersect; 
 						c2.getParent().x+=c2.xSpeed*Time.getDelta() * intersect; 
-						c2.getParent().y+=c2.ySpeed*Time.getDelta() * intersect;
-						intersect = HavardCollision.intersecting(c1, c2) ? -1 : 1;
-					} while(c1.hasSpeed(0.2f) || c2.hasSpeed(0.2f));
+						intersect = HavardCollision.intersecting(c1, c2) ? -1.3f : 1;
+					} while(Math.abs(c1.xSpeed) > 0.2f || Math.abs(c2.xSpeed) > 0.2f);
+					
+					intersect = -1;
+					do {
+						c1.ySpeed*=0.5f;
+						c2.ySpeed*=0.5f;
+						c1.getParent().y+=c1.ySpeed*Time.getDelta() * intersect; 
+						c2.getParent().y+=c2.ySpeed*Time.getDelta() * intersect; 
+						intersect = HavardCollision.intersecting(c1, c2) ? -1.3f : 1;
+					} while(Math.abs(c1.ySpeed) > 0.2f || Math.abs(c2.ySpeed) > 0.2f);
 				
+					
 					c1.xSpeed = 0;
 					c1.ySpeed = 0;
 					c2.xSpeed = 0;

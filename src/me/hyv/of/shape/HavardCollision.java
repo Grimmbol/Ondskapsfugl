@@ -2,7 +2,7 @@ package me.hyv.of.shape;
 
 import me.hyv.of.game.comp.CollitionComponent;
 
-import static org.lwjgl.opengl.GL11.*;
+//import static org.lwjgl.opengl.GL11.*;
 
 public class HavardCollision {
 	public static boolean intersecting(CollitionComponent c1, CollitionComponent c2) {
@@ -32,7 +32,7 @@ public class HavardCollision {
 									s2.x[j]*s2xSize+s2xMove, s2.y[j]*s2ySize+s2yMove, 
 									s2.x[(j+1)%s2.x.length]*s2xSize+s2xMove, s2.y[(j+1)%s2.y.length]*s2ySize+s2yMove)) {
 					
-					glBegin(GL_LINES);
+					/*glBegin(GL_LINES);
 					
 					glColor3f(0.6f, 0.9f, 0.3f);
 					glVertex2f(s1.x[i]*s1xSize+s1xMove, s1.y[i]*s1ySize+s1yMove);
@@ -40,7 +40,7 @@ public class HavardCollision {
 					glColor3f(0.2f, 0.9f, 0.8f);
 					glVertex2f(s2.x[j]*s2xSize+s2xMove, s2.y[j]*s2ySize+s2yMove);
 					glVertex2f(s2.x[(j+1)%s2.x.length]*s2xSize+s2xMove, s2.y[(j+1)%s2.y.length]*s2ySize+s2yMove);
-					glEnd();
+					glEnd();*/
 					
 					return true;
 				}
@@ -51,16 +51,17 @@ public class HavardCollision {
 	}
 	
 	private static boolean lineIntersect(float aX, float aY, float bX, float bY, float cX, float cY, float dX, float dY) {
+
 		if(aX == bX) {
 			if(cX == dX)
 				return false;
 			
-			float p = (cY-dY)/(cX-dX)*(aX-cX)+cY;
-			return ((aX<cX) != (aX<dX)) && (p>aY == p<bY);
+			float p = (cY-dY)/(cX-dX)*(aX-cX)+cY; //Where the line CD crosses AB on the Y-axis
+			return ((aX<cX) != (aX<dX)) && (aY<=p == p<=bY);
 		}
 		if(cX == dX) {
 			float p = (aY-bY)/(aX-bX)*(cX-aX)+aY;
-			return ((aX<cX) != (bX<cX)) && (p>cY == p<dY);
+			return ((aX<cX) != (bX<cX)) && (cY<=p == p<=dY);
 		}
 				
 		float a = (aY-bY)/(aX-bX);
