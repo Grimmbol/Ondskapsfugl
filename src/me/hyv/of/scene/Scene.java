@@ -10,6 +10,7 @@ public class Scene {
 	}
 	
 	public void addEntity(Entity e) {
+		e.setScene(this);
 		if(!entities.contains(e))
 			entities.add(e);
 		else

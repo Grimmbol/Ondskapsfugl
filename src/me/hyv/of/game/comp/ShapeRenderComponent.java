@@ -25,7 +25,7 @@ public class ShapeRenderComponent extends Component {
 	@Override
 	public void render() {
 		glPushMatrix();
-		glColor3f(r, g, b);
+		glColor4f(r, g, b, 0.4f);
 		glTranslatef(parent.x, parent.y, 0);
 		glScalef(parent.xSize, parent.ySize, 0);
 		shape.renderGL11();

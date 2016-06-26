@@ -22,6 +22,8 @@ public class LogFGame extends AbstractGame {
 	public void init(BaseEngine engine) {
 		glDisable(GL_DEPTH_TEST);
 		glEnable(GL_CULL_FACE);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glClearColor(0.2f, 0.3f, 0.6f, 0);
 		
 		gameScene = new Scene();
@@ -35,12 +37,12 @@ public class LogFGame extends AbstractGame {
 		
 		Entity triangle = new Entity(500, 55+50, 100, 100);
 		triangle.addComponent(new ShapeRenderComponent(ConvexPolygon.RIGHT_ANGLE_BL, 0.3f, 0.6f, 0.8f));
-		triangle.addComponent(new CollitionComponent(ConvexPolygon.RIGHT_ANGLE_BL, pool));
+		//triangle.addComponent(new CollitionComponent(ConvexPolygon.RIGHT_ANGLE_BL, pool));
 		gameScene.addEntity(triangle);
 		
 		Entity hexagon = new Entity(547, 400, 80, 100);
 		hexagon.addComponent(new ShapeRenderComponent(ConvexPolygon.HEXAGON, 0.8f, 0.6f, 0.4f));
-		hexagon.addComponent(new CollitionComponent(ConvexPolygon.HEXAGON, pool));
+		//hexagon.addComponent(new CollitionComponent(ConvexPolygon.HEXAGON, pool));
 		gameScene.addEntity(hexagon);
 		
 		Entity bigSquare = new Entity(800, 600, 200, 200);
@@ -50,22 +52,22 @@ public class LogFGame extends AbstractGame {
 		
 		Entity rombe = new Entity(900, 300, 200, 120);
 		rombe.addComponent(new ShapeRenderComponent(ConvexPolygon.ROMBE, 0.6f, 0.8f, 0.2f));
-		rombe.addComponent(new CollitionComponent(ConvexPolygon.ROMBE, pool));
+		//rombe.addComponent(new CollitionComponent(ConvexPolygon.ROMBE, pool));
 		gameScene.addEntity(rombe);
 		
 		Entity pentagon = new Entity(1500, 200, 200, 200);
 		pentagon.addComponent(new ShapeRenderComponent(ConvexPolygon.PENTAGON, 0.9f, 0.8f, 0.2f));
-		pentagon.addComponent(new CollitionComponent(ConvexPolygon.PENTAGON, pool));
+		//pentagon.addComponent(new CollitionComponent(ConvexPolygon.PENTAGON, pool));
 		gameScene.addEntity(pentagon);
 		
 		Entity circle = new Entity(1700, 700, 300, 300);
 		circle.addComponent(new ShapeRenderComponent(ConvexPolygon.CIRCLE_SHAPE_100, 0.9f, 0.8f, 0.2f));
-		circle.addComponent(new CollitionComponent(ConvexPolygon.CIRCLE_SHAPE_100, pool));
+		//circle.addComponent(new CollitionComponent(ConvexPolygon.CIRCLE_SHAPE_100, pool));
 		gameScene.addEntity(circle);
 		
 		Entity player = new Entity(200, 200, 100, 200);
-		player.addComponent(new ShapeRenderComponent(ConvexPolygon.HEXAGON, 0.8f, 0.2f, 0.4f));
-		player.addComponent(new PlayerComponent(ConvexPolygon.HEXAGON, pool));
+		player.addComponent(new ShapeRenderComponent(ConvexPolygon.UNIT_SQUARE, 0.8f, 0.2f, 0.4f));
+		player.addComponent(new PlayerComponent(ConvexPolygon.UNIT_SQUARE, pool));
 		gameScene.addEntity(player);
 		
 		Entity physicsPoolEntity = new Entity();
