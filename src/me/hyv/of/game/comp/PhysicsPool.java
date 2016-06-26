@@ -37,26 +37,6 @@ public class PhysicsPool extends Component {
 			for(int j = i+1; j < components.size(); j++) {
 				CollitionComponent c2 = components.get(j);
 				
-				HavardCollision.intersecting(c1, c2);
-				if(c1.hasSpeed(0) || c2.hasSpeed(0) && ColliderHelper.isIntersecting(c1, c2)) {//HavardCollision.intersecting(c1, c2)) {
-					float intersect = -1;
-					do {
-						c1.xSpeed*=0.5f;
-						c1.ySpeed*=0.5f;
-						c2.xSpeed*=0.5f;
-						c2.ySpeed*=0.5f;
-						c1.getParent().x+=c1.xSpeed*Time.getDelta() * intersect;
-						c1.getParent().y+=c1.ySpeed*Time.getDelta() * intersect;
-						c2.getParent().x+=c2.xSpeed*Time.getDelta() * intersect;
-						c2.getParent().y+=c2.ySpeed*Time.getDelta() * intersect;
-						intersect = ColliderHelper.isIntersecting(c1, c2) /*HavardCollision.intersecting(c1, c2)*/ ? -1.3f : 1;
-					} while(c1.hasSpeed(0.2f) || c2.hasSpeed(0.2f));
-					
-					c1.xSpeed = 0;
-					c1.ySpeed = 0;
-					c2.xSpeed = 0;
-					c2.ySpeed = 0;
-				}
 			}
 		}
 	}

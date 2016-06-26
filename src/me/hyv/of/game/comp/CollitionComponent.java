@@ -54,6 +54,11 @@ public class CollitionComponent extends Component {
 		float frFactor = 1f/(1+Time.getDelta()*friction);
 		xSpeed *= frFactor;
 		ySpeed *= frFactor;
+		
+		if(!hasSpeed(0.2f)) {
+			xSpeed = 0;
+			ySpeed = 0;
+		}
 	}
 	
 	@Override
