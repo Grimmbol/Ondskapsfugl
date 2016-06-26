@@ -109,34 +109,41 @@ public class CollisionFinder {
 	public static final float getDistanceToLine(Vector2 a, Vector2 b, Vector2 point) {
 		if(a.x == b.x)
 			return a.y > b.y ? a.x - point.x : point.x - a.x;
-	
+		
+		//The 'a' of 'ax+b' for our line
 		float line = (a.y-b.y)/(a.x-b.x);
+		//The 'a' of 'ax+b' for the normal line
 		float norm = line * -1;
 		
+		//The point on the y axis our line crosses x=0
 		float skj = a.y - a.x * line;
+		//Where on the y axis the normal crosses x=0
 		float normSkj = point.y - point.x * norm;
+		//The normal line now has a position, and we know
+		//Our point is on the normal line
 		
+		//The x coordinate where our line and its normal meet
 		float x = (normSkj-skj) / (line-norm);
+		//The y coordinate where our line and its normal meet
 		float y = x*line+skj;
+		//The cross is the point on our line the closest to our point
 		
+		//The distance between the cross and our point
 		float dist = (float)Math.hypot(point.x-x, point.y-y);
 		
+		//If the point is above the line, we have a positive
+		//distance, unless A is further to the left than B
+		//In which case the line is "upside down" and we flip
 		return point.y > y != a.x < b.x ? dist : -dist;
 	}
 	
 	public static void main(String[] args) {
-		Vector2 a = new Vector2(4, 10);
-		Vector2 b = new Vector2(12, 3);
-		Vector2 c = new Vector2(9, 9);
-		Vector2 d = new Vector2(6, 4);
-		Vector2 e = new Vector2(2, 6);
-		Vector2 f = new Vector2(3, 4);
-		Vector2 g = new Vector2(7, 2);
-		Vector2 h = new Vector2(5, 8);
-		Vector2 i = new Vector2(4, 8);
+		Vector2 a = new Vector2(10, 4);
+		Vector2 b = new Vector2(3, 11);
+		Vector2 c = new Vector2(3.75f, 3.61f);
 		Result result = new Result();
 		
-		System.out.println(intersectTriangleAndPoint(d, h, f, result));
+		System.out.println(intersectTriangleAndPoint(a, b, c, result));
 		System.out.println(result.overlap + ":" + result.overlapN);
 	}
 }
