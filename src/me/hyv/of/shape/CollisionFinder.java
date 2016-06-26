@@ -112,10 +112,10 @@ public class CollisionFinder {
 		
 		//The 'a' of 'ax+b' for our line
 		float line = (a.y-b.y)/(a.x-b.x);
-		//The 'a' of 'ax+b' for the normal line
-		float norm = line * -1;
+		//The 'a' of 'ax+b' for the normal to our line
+		float norm = -1/line;
 		
-		//The point on the y axis our line crosses x=0
+		//Where on the y axis our line crosses x=0
 		float skj = a.y - a.x * line;
 		//Where on the y axis the normal crosses x=0
 		float normSkj = point.y - point.x * norm;
@@ -138,9 +138,9 @@ public class CollisionFinder {
 	}
 	
 	public static void main(String[] args) {
-		Vector2 a = new Vector2(10, 4);
-		Vector2 b = new Vector2(3, 11);
-		Vector2 c = new Vector2(3.75f, 3.61f);
+		Vector2 a = new Vector2(-7, 4);
+		Vector2 b = new Vector2(-10, -2);
+		Vector2 c = new Vector2(-6, -1);
 		Result result = new Result();
 		
 		System.out.println(intersectTriangleAndPoint(a, b, c, result));
