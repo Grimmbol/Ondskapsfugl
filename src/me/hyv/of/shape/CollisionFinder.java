@@ -48,9 +48,16 @@ public class CollisionFinder {
 				
 				glBegin(GL_LINE_STRIP);
 				glColor3f(1, 0.8f, 0.3f);
-				glVertex2f(aC.x+e.x, aC.y+e.y);
-				glVertex2f(bC.x+e.x, bC.y+e.y);
-				glVertex2f(point.x+e.x, point.y+e.y);
+				glVertex2f(aC.x+200, aC.y+600);
+				glVertex2f(bC.x+200, bC.y+600);
+				glVertex2f(200, 600);
+				glVertex2f(aC.x+200, aC.y+600);
+				glEnd();
+				glBegin(GL_TRIANGLES);
+				glColor3f(0.9f, 0.9f, 0.4f);
+				glVertex2f(point.x+200, point.y+600);
+				glVertex2f(point.x+205, point.y+605);
+				glVertex2f(point.x+200, point.y+605);
 				glEnd();
 				
 				/*point.set(bS.x[j]*bXS+bX-aX, bS.y[j]*bYS+bY-aY); //We then check if b is in a
@@ -77,23 +84,24 @@ public class CollisionFinder {
 		float ab = a.dotNormalized(b);
 		float bp = b.dotNormalized(point);
 		
-		if(ap<ab || bp < ab)
+		if(ap < ab || bp < ab) //Not in the same sector
 			return false;
 		
 		float dist = getDistanceToLine(a, b, point);
+		System.out.println(dist);
 		if(dist < 0) {
 			result.intersect = true;
 			result.overlap = dist;
 			result.overlapN.set(b.y-a.y, a.x-b.x);
 			result.overlapN.normalizeSelf();
 			
-			/*glBegin(GL_QUADS);
-			glColor3f(1.f, 1.f, 1.f);
+			glBegin(GL_QUADS);
+			glColor4f(1.f, 1.f, 1.f, 1);
 			glVertex2f(0, 0);
 			glVertex2f(1000, 0);
-			glVertex2f(1000, 20);
-			glVertex2f(0, 20);
-			glEnd();*/
+			glVertex2f(1000, 100);
+			glVertex2f(0, 100);
+			glEnd();
 			
 			return true;
 		}
@@ -109,7 +117,9 @@ public class CollisionFinder {
 	public static final float getDistanceToLine(Vector2 a, Vector2 b, Vector2 point) {
 		if(a.x == b.x)
 			return a.y > b.y ? a.x - point.x : point.x - a.x;
-		
+		if(a.y == b.y)
+			return a.x > b.x ? point.y - a.y : a.y - point.y;
+			
 		//The 'a' of 'ax+b' for our line
 		float line = (a.y-b.y)/(a.x-b.x);
 		//The 'a' of 'ax+b' for the normal to our line
