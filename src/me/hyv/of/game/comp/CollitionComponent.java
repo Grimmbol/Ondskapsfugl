@@ -32,6 +32,10 @@ public class CollitionComponent extends Component {
 		pool.removeComponent(this);
 	}
 	
+	public PhysicsPool getPhysicsPool() {
+		return pool;
+	}
+	
 	public Entity getParent() {
 		return parent;
 	}

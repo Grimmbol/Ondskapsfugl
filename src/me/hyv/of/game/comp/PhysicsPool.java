@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import me.hyv.of.engine.Time;
 import me.hyv.of.scene.Component;
+import me.hyv.of.shape.ColliderHelper;
 import me.hyv.of.shape.HavardCollision;
 
 public class PhysicsPool extends Component {
@@ -36,7 +37,8 @@ public class PhysicsPool extends Component {
 			for(int j = i+1; j < components.size(); j++) {
 				CollitionComponent c2 = components.get(j);
 				
-				if(c1.hasSpeed(0) || c2.hasSpeed(0) && HavardCollision.intersecting(c1, c2)) {
+				HavardCollision.intersecting(c1, c2);
+				if(c1.hasSpeed(0) || c2.hasSpeed(0) && ColliderHelper.isIntersecting(c1, c2)) {//HavardCollision.intersecting(c1, c2)) {
 					float intersect = -1;
 					do {
 						c1.xSpeed*=0.5f;
@@ -47,7 +49,7 @@ public class PhysicsPool extends Component {
 						c1.getParent().y+=c1.ySpeed*Time.getDelta() * intersect;
 						c2.getParent().x+=c2.xSpeed*Time.getDelta() * intersect;
 						c2.getParent().y+=c2.ySpeed*Time.getDelta() * intersect;
-						intersect = HavardCollision.intersecting(c1, c2) ? -1.3f : 1;
+						intersect = ColliderHelper.isIntersecting(c1, c2) /*HavardCollision.intersecting(c1, c2)*/ ? -1.3f : 1;
 					} while(c1.hasSpeed(0.2f) || c2.hasSpeed(0.2f));
 					
 					c1.xSpeed = 0;
