@@ -58,6 +58,11 @@ public class LogFGame extends AbstractGame {
 		pentagon.addComponent(new CollitionComponent(ConvexPolygon.PENTAGON, pool));
 		gameScene.addEntity(pentagon);
 		
+		Entity circle = new Entity(1700, 700, 300, 300);
+		circle.addComponent(new ShapeRenderComponent(ConvexPolygon.CIRCLE_SHAPE_100, 0.9f, 0.8f, 0.2f));
+		circle.addComponent(new CollitionComponent(ConvexPolygon.CIRCLE_SHAPE_100, pool));
+		gameScene.addEntity(circle);
+		
 		Entity player = new Entity(200, 200, 100, 200);
 		player.addComponent(new ShapeRenderComponent(ConvexPolygon.HEXAGON, 0.8f, 0.2f, 0.4f));
 		player.addComponent(new PlayerComponent(ConvexPolygon.HEXAGON, pool));

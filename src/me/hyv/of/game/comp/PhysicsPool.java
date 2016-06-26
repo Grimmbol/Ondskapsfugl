@@ -37,23 +37,16 @@ public class PhysicsPool extends Component {
 				CollitionComponent c2 = components.get(j);
 				
 				if(c1.hasSpeed(0) || c2.hasSpeed(0) && HavardCollision.intersecting(c1, c2)) {
-					float intersect = -1;
-					do {
-						c1.xSpeed*=0.5f;
-						c1.ySpeed*=0.5f;
-						c2.xSpeed*=0.5f;
-						c2.ySpeed*=0.5f;
-						c1.getParent().x+=c1.xSpeed*Time.getDelta() * intersect;
-						c1.getParent().y+=c1.ySpeed*Time.getDelta() * intersect;
-						c2.getParent().x+=c2.xSpeed*Time.getDelta() * intersect;
-						c2.getParent().y+=c2.ySpeed*Time.getDelta() * intersect;
-						intersect = HavardCollision.intersecting(c1, c2) ? -1.3f : 1;
-					} while(c1.hasSpeed(0.2f) || c2.hasSpeed(0.2f));
+					float normX = -1, normY = 0;
+					float hitX = c2.xSpeed - c1.xSpeed;
+					float hitY = c2.ySpeed - c1.ySpeed;
+					float hitLen = (float)Math.hypot(hitX, hitY);
+					float hitXN = hitX / hitLen;
+					float hitYN = hitY / hitLen;
+					float dot = dot(normX, normY, hitXN, hitYN);
+					if(dot > 0) //We don't care
+						continue;
 					
-					c1.xSpeed = 0;
-					c1.ySpeed = 0;
-					c2.xSpeed = 0;
-					c2.ySpeed = 0;
 				}
 			}
 		}
@@ -62,5 +55,9 @@ public class PhysicsPool extends Component {
 	@Override
 	public void render() {
 		
+	}
+	
+	private static float dot(float aX, float aY, float bX, float bY) {
+		return aX*bX+aY*bY;
 	}
 }
