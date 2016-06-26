@@ -81,10 +81,10 @@ public class CollisionFinder {
 			return false;
 		
 		float dist = getDistanceToLine(a, b, point);
-		if(dist > 0) {
+		if(dist < 0) {
 			result.intersect = true;
 			result.overlap = dist;
-			result.overlapN.set(a.y-b.y, b.x-a.x);
+			result.overlapN.set(b.y-a.y, a.x-b.x);
 			result.overlapN.normalizeSelf();
 			
 			/*glBegin(GL_QUADS);
@@ -104,7 +104,7 @@ public class CollisionFinder {
 	 * @param a the a point of the line
 	 * @param b the b point of the line
 	 * @param point the point
-	 * @return the distance from the line to the point. When positive, a is to the "left" of the normal
+	 * @return the distance from the line to the point. When positive, a is to the right of the normal
 	 */
 	public static final float getDistanceToLine(Vector2 a, Vector2 b, Vector2 point) {
 		if(a.x == b.x)
@@ -120,7 +120,8 @@ public class CollisionFinder {
 		float y = x*line+skj;
 		
 		float dist = (float)Math.hypot(point.x-x, point.y-y);
-		return a.x < b.x ? dist : -dist;
+		
+		return point.y > y != a.x < b.x ? dist : -dist;
 	}
 	
 	public static void main(String[] args) {
@@ -135,7 +136,7 @@ public class CollisionFinder {
 		Vector2 i = new Vector2(4, 8);
 		Result result = new Result();
 		
-		System.out.println(intersectTriangleAndPoint(h, d, f, result));
+		System.out.println(intersectTriangleAndPoint(d, h, f, result));
 		System.out.println(result.overlap + ":" + result.overlapN);
 	}
 }
