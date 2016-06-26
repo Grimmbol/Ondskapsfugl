@@ -34,7 +34,7 @@ public class CollisionFinder {
 		
 		mainLoop:
 		for(int i = 0; i < aS.x.length; i++) {
-			for(int j = 0; j < 1; j++) {
+			for(int j = 0; j < bS.x.length; j++) {
 				
 				point.set(aS.x[i]*aXS+aX-bX, aS.y[i]*aYS+aY-bY); //We first see if a is in b
 				int xp1 = (j+1)%bS.x.length;
@@ -84,7 +84,7 @@ public class CollisionFinder {
 		float ab = a.dotNormalized(b);
 		float bp = b.dotNormalized(point);
 		
-		if(ap < ab || bp < ab) //Not in the same sector
+		if((ap < 0 && bp < 0) || ap < ab || bp < ab) //Not in the same sector
 			return false;
 		
 		float dist = getDistanceToLine(a, b, point);
@@ -102,6 +102,8 @@ public class CollisionFinder {
 			glVertex2f(1000, 100);
 			glVertex2f(0, 100);
 			glEnd();
+			
+			System.out.printf("a: %s b: %s, point: %s, ap: %f, ab: %f, bp:%f%n", a, b, point, ap, ab, bp);
 			
 			return true;
 		}
