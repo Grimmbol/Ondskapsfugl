@@ -39,9 +39,10 @@ public class PhysicsPool extends Component {
 				
 				if(c1.hasSpeed(0) || c2.hasSpeed(0) || true) {
 					if(CollisionFinder.testCollition(c1, c2, result)) {
-						//c1.getParent().x -= result.overlap * result.overlapN.x;
-						//c1.getParent().y -= result.overlap * result.overlapN.y;
-						
+						if(result.bina)
+							result.overlapN.invertSelf();
+						c1.getParent().x -= result.overlap * result.overlapN.x;
+						c1.getParent().y -= result.overlap * result.overlapN.y;
 					}
 				}
 			}

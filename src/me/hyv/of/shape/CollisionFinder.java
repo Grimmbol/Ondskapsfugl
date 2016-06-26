@@ -4,11 +4,14 @@ import me.hyv.of.engine.math.Vector2;
 import me.hyv.of.game.comp.CollitionComponent;
 import me.hyv.of.scene.Entity;
 
-import static org.lwjgl.opengl.GL11.*;
+//import static org.lwjgl.opengl.GL11.*;
 
 public class CollisionFinder {
 	public static class Result {
 		public boolean ainb, bina, intersect;
+		/**
+		 *  The normal of the face penetrated. Belongs to b if <code>ainb</code> is true and vice versa
+		 */
 		public Vector2 overlapN = new Vector2();
 		public float overlap;
 	}
@@ -31,6 +34,7 @@ public class CollisionFinder {
 		ConvexPolygon bS = b.getShape();
 		
 		result.intersect = false;
+		result.overlap = 0;
 		
 		mainLoop:
 		for(int i = 0; i < aS.x.length; i++) {
@@ -43,10 +47,9 @@ public class CollisionFinder {
 				if(intersectTriangleAndPoint(aC, bC, point, result)) {
 					result.ainb = true;
 					result.bina = false;
-					break mainLoop;
 				}
 				
-				glBegin(GL_LINE_STRIP);
+				/*glBegin(GL_LINE_STRIP);
 				glColor3f(1, 0.8f, 0.3f);
 				glVertex2f(aC.x+200, aC.y+600);
 				glVertex2f(bC.x+200, bC.y+600);
@@ -58,18 +61,16 @@ public class CollisionFinder {
 				glVertex2f(point.x+200, point.y+600);
 				glVertex2f(point.x+205, point.y+605);
 				glVertex2f(point.x+200, point.y+605);
-				glEnd();
+				glEnd();*/
 				
-				/*point.set(bS.x[j]*bXS+bX-aX, bS.y[j]*bYS+bY-aY); //We then check if b is in a
+				point.set(bS.x[j]*bXS+bX-aX, bS.y[j]*bYS+bY-aY); //We then check if b is in a
 				xp1 = (i+1)%aS.x.length;
 				aC.set(aS.x[i]*aXS, 	aS.y[i]*aYS);
 				bC.set(aS.x[xp1]*aXS, 	aS.y[xp1]*aYS);
-				
 				if(intersectTriangleAndPoint(aC, bC, point, result)) {
 					result.bina = true;
 					result.ainb = false;
-					break mainLoop;
-				}*/
+				}
 			}
 		}
 		
@@ -88,23 +89,22 @@ public class CollisionFinder {
 			return false;
 		
 		float dist = getDistanceToLine(a, b, point);
-		System.out.println(dist);
-		if(dist < 0) {
+		if(dist < 0 && dist < result.overlap) {
 			result.intersect = true;
 			result.overlap = dist;
 			result.overlapN.set(b.y-a.y, a.x-b.x);
 			result.overlapN.normalizeSelf();
 			
-			glBegin(GL_QUADS);
-			glColor4f(1.f, 1.f, 1.f, 1);
-			glVertex2f(0, 0);
-			glVertex2f(1000, 0);
-			glVertex2f(1000, 100);
-			glVertex2f(0, 100);
-			glEnd();
-			
-			System.out.printf("a: %s b: %s, point: %s, ap: %f, ab: %f, bp:%f%n", a, b, point, ap, ab, bp);
-			
+//			glBegin(GL_QUADS);
+//			glColor4f(1.f, 1.f, 1.f, 1);
+//			glVertex2f(0, 0);
+//			glVertex2f(1000, 0);
+//			glVertex2f(1000, 100);
+//			glVertex2f(0, 100);
+//			glEnd();
+//			
+//			System.out.printf("a: %s b: %s, point: %s, ap: %f, ab: %f, bp:%f%n", a, b, point, ap, ab, bp);
+//			
 			return true;
 		}
 		return false;
@@ -147,15 +147,5 @@ public class CollisionFinder {
 		//distance, unless A is further to the left than B
 		//In which case the line is "upside down" and we flip
 		return point.y > y != a.x < b.x ? dist : -dist;
-	}
-	
-	public static void main(String[] args) {
-		Vector2 a = new Vector2(-7, 4);
-		Vector2 b = new Vector2(-10, -2);
-		Vector2 c = new Vector2(-6, -1);
-		Result result = new Result();
-		
-		System.out.println(intersectTriangleAndPoint(a, b, c, result));
-		System.out.println(result.overlap + ":" + result.overlapN);
 	}
 }

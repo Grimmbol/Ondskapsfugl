@@ -78,6 +78,11 @@ public class Vector2 {
 		this.y -= y;
 	}
 	
+	public void invertSelf() {
+		x = -x;
+		y = -y;
+	}
+	
 	@Override
 	public String toString() {
 		return String.format("[%f, %f]", x, y);
