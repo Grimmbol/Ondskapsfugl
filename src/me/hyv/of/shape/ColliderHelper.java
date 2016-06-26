@@ -2,9 +2,8 @@ package me.hyv.of.shape;
 
 import java.util.Stack;
 
+import me.hyv.of.engine.math.*;
 import me.hyv.of.game.comp.CollitionComponent;
-//import me.hyv.of.game.comp.PhysicsPool;
-//import me.hyv.of.scene.Entity;
 import me.hyv.of.game.comp.PhysicsPool;
 
 public class ColliderHelper {
@@ -19,7 +18,7 @@ public class ColliderHelper {
 	 * @return
 	 */
 	
-	private static float[] support(float[] dir, float[] point, CollitionComponent diff) {
+	private static float[] support(Vector2 dir, Vector2 point, CollitionComponent diff) {
 		
 		return null;
 	}
@@ -52,29 +51,8 @@ public class ColliderHelper {
 		return null;
 	}
 	
-	public static float orientation(float[] a, float[] b, float[] c) {
-		return (b[0]*c[1] - b[1]*c[0]) - (a[0]*(b[1]-c[1])) + (c[0] - b[0]);
-	}
-	
-	public static float dotProduct(float [] a, float[] b) {
-		
-		if(a.length != b.length)
-			throw new IllegalArgumentException("The two vectors must belong to the "
-					+ "same space. For instance, if a is in Q^3, so must b");
-	
-		float result = 0; 
-		
-		for(int i = 0; i < a.length; i++) {
-			result += a[i]*b[i];
-		}
-		
-		return result;
-	}
-	
-	public static float[] crossProduct (float[] a, float[] b) {
-		float[] result = {a[1]*b[2] - a[2]*b[1], a[2]*b[0] - a[0]*b[2], 
-				          a[0]*b[1] - a[1]*b[0]};
-		return result;
+	public static float orientation(Vector2 v1, Vector2 v2, Vector2 v3) {
+		return (v2.y*v3.y - v2.y*v3.x) - (v1.x*(v2.y-v3.y)) + (v3.x - v2.x);
 	}
 	
 	public static void main(String[] args) {
