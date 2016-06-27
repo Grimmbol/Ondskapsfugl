@@ -1,7 +1,6 @@
 package me.hyv.of.engine.math;
 
 public class Vector2 {
-	
 	public static final Vector2 ZERO = new Vector2(0, 0);
 	public static final ReuseableStack<Vector2> REUSEABLE = new ReuseableStack<>(()->new Vector2());
 	

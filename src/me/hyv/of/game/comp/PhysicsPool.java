@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import me.hyv.of.scene.Component;
 import me.hyv.of.shape.CollisionFinder;
+import me.hyv.of.shape.ColliderHelper;
 
 public class PhysicsPool extends Component {
 	private ArrayList<CollitionComponent> components = new ArrayList<>();

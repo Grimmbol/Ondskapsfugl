@@ -35,10 +35,6 @@ public class LogFGame extends AbstractGame {
 		//floor.addComponent(new CollitionComponent(ConvexPolygon.UNIT_SQUARE, pool));
 		gameScene.addEntity(floor);
 		
-		Entity triangle = new Entity(500, 55+50, 100, 100);
-		triangle.addComponent(new ShapeRenderComponent(ConvexPolygon.RIGHT_ANGLE_BL, 0.3f, 0.6f, 0.8f));
-		triangle.addComponent(new CollitionComponent(ConvexPolygon.RIGHT_ANGLE_BL, pool));
-		gameScene.addEntity(triangle);
 		
 		Entity hexagon = new Entity(547, 400, 80, 100);
 		hexagon.addComponent(new ShapeRenderComponent(ConvexPolygon.HEXAGON, 0.8f, 0.6f, 0.4f));
