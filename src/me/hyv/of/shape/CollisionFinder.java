@@ -34,7 +34,7 @@ public class CollisionFinder {
 		ConvexPolygon bS = b.getShape();
 		
 		result.intersect = false;
-		result.overlap = 0;
+		result.overlap = -100;
 		
 		mainLoop:
 		for(int i = 0; i < aS.x.length; i++) {
@@ -89,7 +89,7 @@ public class CollisionFinder {
 			return false;
 		
 		float dist = getDistanceToLine(a, b, point);
-		if(dist < 0 && dist < result.overlap) {
+		if(dist < 0 && dist > result.overlap) {
 			result.intersect = true;
 			result.overlap = dist;
 			result.overlapN.set(b.y-a.y, a.x-b.x);
