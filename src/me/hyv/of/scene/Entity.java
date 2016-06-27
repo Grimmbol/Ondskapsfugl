@@ -14,8 +14,8 @@ public class Entity {
 	public Entity() {
 		components = new ArrayList<>();
 		alive = true;
-		x = 1;
-		y = 1;
+		xSize = 1;
+		ySize = 1;
 		visible = true;
 	}
 	
